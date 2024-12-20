@@ -1,0 +1,48 @@
+Pour hacher le mot de passe d'un utilisateur via Tinker dans Laravel, tu peux suivre les étapes suivantes :
+
+### Étapes :
+
+1. Accéder à Tinker :
+   - Ouvre ton terminal et exécute la commande suivante pour entrer dans l'outil Tinker :
+     bash
+     php artisan tinker
+     
+
+2. Rechercher l'utilisateur avec un email spécifique :
+   Utilise la commande suivante pour récupérer un utilisateur par son email :
+   php
+   $user = \App\Models\User::where('email', 'mailto:email@exemple.com')->first();
+   
+
+   Remplace `mailto:email@exemple.com` par l'email de l'utilisateur que tu veux modifier.
+
+3. Hacher un nouveau mot de passe :
+   Hache le mot de passe que tu veux assigner à cet utilisateur :
+   php
+   $user->password = Hash::make('nouveau_mot_de_passe');
+   
+
+   Remplace `'nouveau_mot_de_passe'` par le mot de passe que tu veux définir.
+
+4. Sauvegarder les modifications :
+   Une fois le mot de passe haché, n'oublie pas de sauvegarder l'utilisateur :
+   php
+   $user->save();
+   
+
+5. Vérifier si le mot de passe a été mis à jour (optionnel) :
+   Tu peux vérifier si le mot de passe a bien été haché en récupérant à nouveau l'utilisateur :
+   php
+   $user->password;
+   
+
+Cela affichera le mot de passe haché pour confirmer que tout est correct.
+
+### Commandes récapitulatives :
+php
+$user = \App\Models\User::where('email', 'mailto:email@exemple.com')->first();
+$user->password = Hash::make('nouveau_mot_de_passe');
+$user->save();
+
+
+Cela mettra à jour le mot de passe de l'utilisateur avec l'email spécifié.
